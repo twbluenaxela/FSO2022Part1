@@ -13,6 +13,7 @@ const Content = (props) => {
   return (
     <div>
       <p>{props.content}</p>
+      <p>{props.amount}</p>
     </div>
   )
 }
@@ -20,7 +21,6 @@ const Content = (props) => {
 const Total = (props) => {
   return (
     <div>
-      <p>{props.optionaltext}</p>
       <p>{props.total}</p>
     </div>
   )
@@ -38,13 +38,10 @@ const App = () => {
   return (
     <div>
       <Header course={course} />
-      <Content content={part1} />
-      <Total total={exercises1} />
-      <Content content={part2} />
-      <Total total={exercises2} />
-      <Content content={part3} />
-      <Total total={exercises3} />
-      <Total optionaltext="Number of exercises" total={exercises1 + exercises2 + exercises3} />
+      <Content content={part1} amount={exercises1} />
+      <Content content={part2} amount={exercises2}/>
+      <Content content={part3} amount={exercises3}/>
+      <Total total={"Number of exercises " + (exercises1 + exercises2 + exercises3)} />
     </div>
   )
 }
