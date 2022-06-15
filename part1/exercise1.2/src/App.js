@@ -19,19 +19,21 @@ const Part = (props) => {
 }
 
 const Content = (props) => {
+  console.log("Loading content props..." + props.parts)
   return (
     <div>
-      <Part content={props.part1} amount={props.ex1} />
-      <Part content={props.part2} amount={props.ex2} />
-      <Part content={props.part3} amount={props.ex3} />
+      <Part content={props.parts[0].name} amount={props.parts[0].exercises} />
+      <Part content={props.parts[1].name} amount={props.parts[1].exercises} />
+      <Part content={props.parts[2].name} amount={props.parts[2].exercises} />
     </div>
   )
 }
 
 const Total = (props) => {
+  console.log("Total props: " + props.parts)
   return (
     <div>
-      <p>{props.total}</p>
+      <p>Number of exercises {props.parts[0].exercises + props.parts[1].exercises + props.parts[2].exercises}</p>
     </div>
   )
 }
@@ -56,14 +58,8 @@ const App = () => {
   return (
     <div>
       <Header course={course} />
-      <Content 
-      part1={parts[0].name} 
-      part2={parts[1].name} 
-      part3={parts[2].name} 
-      ex1={parts[0].exercises} 
-      ex2={parts[1].exercises}
-      ex3={parts[2].exercises} />
-      <Total total={"Number of exercises " + (parts[0].exercises + parts[1].exercises + parts[2].exercises)} />
+      <Content parts={parts} />
+      <Total parts={parts} />
     </div>
   )
 }
