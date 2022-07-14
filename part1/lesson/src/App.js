@@ -1,34 +1,47 @@
-const Hello = (props) => {
-  return (
-    <div>
-      <p>Hello {props.name}, you are {props.age} years old</p>
-    </div>
-  )
-} 
+import { useState } from "react";
 
-const Footer = () => {
-  return (
-    <div>
-      <p>本React App由 <a href="https://github.com/twbluenaxela">twbluenaxela</a>制作设计</p>
-    </div>
-  )
-}
+const History = (props) => {
+  if (props.allClicks.length === 0) {
+    return <div>the app is used by pressing the buttons</div>;
+  }
+  return <div>button press history: {props.allClicks.join(" ")}</div>;
+};
+
+const Button = (props) => (
+  <button onClick={props.handleClick}>
+    {props.text}
+  </button>
+)
 
 const App = () => {
+  const [value, setValue] = useState(10)
 
-  const name = "Peter"
-  const age = 10
+  const handleClick = () => {
+    console.log('clicked the button') 
+    setValue(0)
+
+
+  }
+
+  const hello = (who) => () => {
+    console.log('hello', who)
+   }
+
+  const setToValue = (newValue) => {
+    console.log('value now', newValue)
+    setValue(newValue)
+  }
+  
+  
 
   return (
     <div>
-      <h1>Greetings</h1>
-      <Hello name="Daisy" age={age} />
-      <Hello name={name} age={50 + 10} />
-      <Footer />
+      {value}
+      <Button handleClick={() => setToValue(1000)} text="thousand" />
+      <Button handleClick={() => setToValue(0)} text="reset" />
+      <Button handleClick={() => setToValue(value + 1)} text="increment" />
     </div>
   )
-  
-}
-  
+};
 
-export default App
+export default App;
