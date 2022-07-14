@@ -14,6 +14,8 @@ const Average = (props) => <p>{"average " + props.average}</p>;
 
 const PositiveRatio = (props) => <p>{"positive " + props.ratio}</p>;
 
+const StatisticLine = (props) => <p>{props.text + " " + props.value}</p>
+
 const Statistics = (props) => {
   const good = props.good;
   const neutral = props.neutral;
@@ -40,9 +42,9 @@ const Statistics = (props) => {
 
   return (
     <div>
-      <Counter number={good} text="good" />
-      <Counter number={neutral} text="neutral" />
-      <Counter number={bad} text="bad" />
+      <StatisticLine text="good" value={good} />
+      <StatisticLine text="neutral" value={neutral} />
+      <StatisticLine text="bad" value={bad} />
       <Total total={good + neutral + bad} />
       <Average average={calculateAverage()} />
       <PositiveRatio ratio={calculatePositiveRatio()} />
