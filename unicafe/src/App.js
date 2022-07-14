@@ -12,6 +12,18 @@ const Counter = (props) => (
   <p>{props.text + " " + props.number}</p>
 )
 
+const Total = (props) => (
+  <p>{"all " + props.total}</p>
+)
+
+const Average = (props) => (
+  <p>{"average " + props.average}</p>
+)
+
+const PositiveRatio = (props) => (
+  <p>{"positive " + props.ratio}</p>
+)
+
 const App = () => {
   // save clicks of each button to its own state
   const [good, setGood] = useState(0)
@@ -32,6 +44,19 @@ const App = () => {
     }
   }
 
+  let calculateAverage = () => {
+    const total = good + neutral + bad
+    const badNumToNegative = -Math.abs(bad)
+    const average = (good + badNumToNegative)/total
+    return average > 0 ? average : 0
+  }
+
+  const calculatePositiveRatio = () => {
+    const total = good + neutral + bad
+    const positiveRatio = (good/total) * 100
+    return positiveRatio ? positiveRatio : 0
+  }
+
   return (
     <div>
       <Display text="Give feedback" />
@@ -43,6 +68,9 @@ const App = () => {
       <Counter number={good} text="good" />
       <Counter number={neutral} text="neutral" />
       <Counter number={bad} text="bad" />
+      <Total total={good + neutral + bad} />
+      <Average average={calculateAverage()} />
+      <PositiveRatio ratio={calculatePositiveRatio()} />
     </div>
   )
 }
