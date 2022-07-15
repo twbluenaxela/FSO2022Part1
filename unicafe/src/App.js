@@ -42,12 +42,34 @@ const Statistics = (props) => {
 
   return (
     <div>
-      <StatisticLine text="good" value={good} />
-      <StatisticLine text="neutral" value={neutral} />
-      <StatisticLine text="bad" value={bad} />
-      <Total total={good + neutral + bad} />
-      <Average average={calculateAverage()} />
-      <PositiveRatio ratio={calculatePositiveRatio()} />
+      <table>
+        <tbody>
+          <tr>
+            <td><StatisticLine text="good" value={good} /></td>
+          </tr>
+          <tr>
+          <td><StatisticLine text="neutral" value={neutral} /></td>
+          </tr>
+          <tr>
+            <td><StatisticLine text="bad" value={bad} /></td>
+          </tr>
+          <tr>
+            <td><Total total={good + neutral + bad} /></td>
+          </tr>
+          <tr>
+            <td><Average average={calculateAverage()} /></td>
+          </tr>
+          <tr>
+            <td><PositiveRatio ratio={calculatePositiveRatio()} /></td>
+          </tr>
+        </tbody>
+      </table>
+      
+      
+      
+      
+      
+      
     </div>
   );
 };
