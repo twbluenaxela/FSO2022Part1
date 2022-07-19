@@ -12,6 +12,10 @@ const Display = (props) => (
   <p>{props.text}</p>
 )
 
+const TopAnecdote = (props) => (
+  <p></p>
+)
+
 const App = () => {
   const anecdotes = [
     'If it hurts, do it more often',
@@ -45,14 +49,23 @@ const App = () => {
     setPoints(copy)
   }
 
-
+  const getTopAnecdote = () => {
+    const max = Math.max(... points)
+    const indexOfTopAnecdote = points.indexOf(max)
+    console.log(indexOfTopAnecdote)
+    return indexOfTopAnecdote
+  }
 
   return (
     <div>
+      <h1>Anecdote of the Day</h1>
       <Display text={anecdotes[selected]} />
       <Display text={"has " + points[selected] + " votes"} />
       <UpvoteButton handleUpvote={() => handleUpvote()} />
       <QuoteGeneratorButton handleClick={() => handleClick()} />
+      <h1>Anecdote with the most votes</h1>
+      <Display text={anecdotes[getTopAnecdote()]} />
+      <Display text={"has " + points[getTopAnecdote()] + " votes"} />
     </div>
   )
 }
