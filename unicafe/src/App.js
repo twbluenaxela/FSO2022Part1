@@ -94,18 +94,7 @@ const App = () => {
     }
   };
 
-  let calculateAverage = () => {
-    const total = good + neutral + bad;
-    const badNumToNegative = -Math.abs(bad);
-    const average = (good + badNumToNegative) / total;
-    return average > 0 ? average : 0;
-  };
-
-  const calculatePositiveRatio = () => {
-    const total = good + neutral + bad;
-    const positiveRatio = (good / total) * 100;
-    return positiveRatio ? positiveRatio : 0;
-  };
+  
 
   return (
     <div>

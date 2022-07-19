@@ -4,6 +4,14 @@ const QuoteGeneratorButton = (props) => (
   <button onClick={props.handleClick}>next anecdote</button>
 )
 
+const UpvoteButton = (props) => (
+  <button onClick={props.handleUpvote}>vote</button>
+)
+  
+const Display = (props) => (
+  <p>{props.text}</p>
+)
+
 const App = () => {
   const anecdotes = [
     'If it hurts, do it more often',
@@ -15,7 +23,13 @@ const App = () => {
     'Programming without an extremely heavy use of console.log is same as if a doctor would refuse to use x-rays or blood tests when diagnosing patients'
   ]
 
+  let pointsInitialArray = new Uint8Array(anecdotes.length)
+
   const [selected, setSelected] = useState(0)
+  const [points, setPoints] = useState(pointsInitialArray)
+
+
+  
 
   const handleClick = () => {
     const min = 0
@@ -24,12 +38,20 @@ const App = () => {
     setSelected(randomNumber)
   }
 
+  const handleUpvote = () => {
+    const copy = [... points]  
+    copy[selected] += 1
+    console.log("Values in copy: ", copy)
+    setPoints(copy)
+  }
+
 
 
   return (
     <div>
-      {anecdotes[selected]}
-      <br />
+      <Display text={anecdotes[selected]} />
+      <Display text={"has " + points[selected] + " votes"} />
+      <UpvoteButton handleUpvote={() => handleUpvote()} />
       <QuoteGeneratorButton handleClick={() => handleClick()} />
     </div>
   )
